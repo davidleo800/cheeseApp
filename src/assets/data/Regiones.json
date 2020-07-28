@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "reg": "Andina"
+    },
+    {
+        "id": "2",
+        "reg": "Caribe"
+    },
+    {
+        "id": "3",
+        "reg": "Pacífico"
+    },
+    {
+        "id": "4",
+        "reg": "Orinoquía"
+    },
+    {
+        "id": "5",
+        "reg": "Amazonía"
+    },
+    {
+        "id": "6",
+        "reg": "Insular"
+    }
+]

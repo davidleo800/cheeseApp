@@ -1,0 +1,79 @@
+<ion-content>
+  <ion-slides pager="false" [options]="slideOpts" #mySlider>
+    <ion-slide>
+      
+      <ion-content  class="ion-padding" >
+        <h1>Bienvenido a QuesoApp</h1>  
+        <form #f="ngForm">
+
+          <ion-item lines="full">
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input [(ngModel)]="user.nombre" name="nombre" type="text" #Nombre required ngModel></ion-input>
+
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-label position="floating">Apellido</ion-label>
+            <ion-input [(ngModel)]="user.apellido" name="apellido" type="text" #Apellido required ngModel></ion-input>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-label position="floating">Telefono fijo</ion-label>
+            <ion-input [(ngModel)]="user.telefono_fijo" name="telefono_fijo" type="text" #Dirección required ngModel> </ion-input>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-label position="floating">Celular</ion-label>
+            <ion-input [(ngModel)]="user.celular" name="celular" type="text" #Telefono required ngModel></ion-input>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-label position="floating">Región</ion-label>
+            <ion-input [(ngModel)]="user.region" name="region" type="text" #Telefono required ngModel></ion-input>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-label>Región</ion-label>
+            <ion-select name="region" [(ngModel)]="user.region" #Departamento required>
+              <ion-select-option *ngFor="let region of datosRegion | async">{{region.reg}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-label>Departamento</ion-label>
+            <ion-select name="departamento" [(ngModel)]="user.departamento" #Departamento required>
+              <ion-select-option *ngFor="let dato of datosTerr | async">{{dato.dep}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-label position="floating">Ciudad</ion-label>
+            <ion-input [(ngModel)]="user.ciudad" name="Ciudad" type="text" #Telefono required ngModel></ion-input>
+          </ion-item>
+      
+          <ion-item lines="full">
+            <ion-label>Tipo de usuario</ion-label>
+            <ion-select name="typeuser" [(ngModel)]="user.typeuser" #typeuser required>
+              <ion-select-option>Productor</ion-select-option>
+              <ion-select-option>Distribuidor</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-row>
+            <ion-col> 
+            <ion-button type="submit" 
+                        (click)="addUser(user)" 
+                        expand="block" [disabled]="f.invalid">Registrar</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-content>
+      
+    </ion-slide>  
+    <ion-slide>
+        <h1>Bienvenido a QuesoApp</h1>
+          <ion-button type="submit" (click)="comenzar()" expand="block">Comenzar</ion-button>
+        
+    </ion-slide>
+  </ion-slides>
+</ion-content>

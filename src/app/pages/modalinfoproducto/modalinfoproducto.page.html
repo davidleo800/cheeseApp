@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Información de producto</ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/main']">
+        <ion-icon slot="icon-only" name="close-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-list  >
+  <ion-card>
+  <ion-img *ngIf="queso.img" [src]="queso.img" ></ion-img>
+  <ion-item>
+    <h2>{{ queso.titulo }}</h2>
+    <p>{{ queso.descripcion }}</p>
+  </ion-item>
+  <ion-card-content *ngIf="authService.isLoggedIn">
+    <ion-item >
+      <h1>{{ ciudad }}</h1>
+    </ion-item>
+    <ion-item >
+      <h1>{{ dep }}</h1>
+    </ion-item>
+    <ion-item >
+      <h1>Reg: {{ region }}</h1>
+    </ion-item>
+    <ion-item >
+      <h1>Productor: {{ nom }}</h1>
+    </ion-item>
+    <ion-item >
+      <h1>Cel: {{ cel }}</h1>
+    </ion-item>
+    <ion-item >
+      <h1>Fijo: {{ fijo }}</h1>
+    </ion-item>
+  </ion-card-content>
+  
+
+  <ion-item *ngIf="queso.promocion">
+    <ion-icon color="danger" slot="end" name="ribbon-outline"></ion-icon>
+    <label slot="end" color="light">Promoción</label>
+  </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-row>
+    <ion-col> 
+    <ion-button type="submit" 
+                (click)="addProduct(notifyProduct)"
+                expand="block" >Ponerse en contacto</ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-header no-border >
+  <ion-toolbar color="cheese">
+    <ion-title text-capitalize >Subir producto</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="salirSinArgumentos()">
+        <ion-icon slot="icon-only" name="close-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form #f="ngForm">
+
+    <ion-item lines="full">
+      <ion-label position="floating">Título o nombre del producto</ion-label>
+      <ion-input [(ngModel)]="queso.titulo" name="nombre" type="text" #Nombre required ngModel></ion-input>
+
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input [(ngModel)]="queso.descripcion" name="apellido" type="text" #Apellido required ngModel></ion-input>
+    </ion-item>
+<!--
+    <ion-item lines="full">
+      <ion-label position="floating">img</ion-label>
+      <ion-input [(ngModel)]="queso.img" name="telefono_fijo" type="text" #Dirección required ngModel> </ion-input>
+    </ion-item>
+-->
+    <ion-item lines="full">
+      <ion-label>Promoción</ion-label>
+      <ion-toggle slot="end" [ngModel]="queso.promocion" name="promocion" (ionChange)="PromocionToggle()"></ion-toggle>
+    </ion-item>
+    
+    <ion-card class="ion-text-center" >
+      <ion-card-header >
+        <ion-card-title>Imagen</ion-card-title>
+      </ion-card-header>
+      <ion-card-content *ngIf="!isUploading && !isUploaded">
+          <input id="uploadBtn" type="file" id="file-upload" class="upload" (change)="handler($event)" />
+      </ion-card-content>
+    </ion-card>
+
+    <ion-row>
+      <ion-col> 
+      <ion-button type="submit" 
+                  (click)="uploadImage(image, queso)"
+                  expand="block" [disabled]="f.invalid">Cargar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>

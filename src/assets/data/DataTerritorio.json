@@ -1,0 +1,162 @@
+[
+    {
+        "id": "1",
+        "dep": "Amazonas",
+        "cap": "Leticia"
+    },
+    {
+        "id": "2",
+        "dep": "Antioquia",
+        "cap": "Medellín"
+    },
+    {
+        "id": "3",
+        "dep": "Arauca",
+        "cap": "Arauca"
+    },
+    {
+        "id": "4",
+        "dep": "Atlántico",
+        "cap": "Barranquilla"
+    },
+    {
+        "id": "5",
+        "dep": "Bolívar",
+        "cap": "Cartagena de Indias"
+    },
+    {
+        "id": "6",
+        "dep": "Boyacá",
+        "cap": "Tunja"
+    },
+    {
+        "id": "7",
+        "dep": "Caldas",
+        "cap": "Manizales"
+    },
+    {
+        "id": "8",
+        "dep": "Caquetá",
+        "cap": "Florencia"
+    },
+    {
+        "id": "9",
+        "dep": "Casanare",
+        "cap": "Yopal"
+    },
+    {
+        "id": "10",
+        "dep": "Cauca",
+        "cap": "Popayán"
+    },
+    {
+        "id": "11",
+        "dep": "Cesar",
+        "cap": "Valledupar"
+    },
+    {
+        "id": "12",
+        "dep": "Chocó",
+        "cap": "Quibdó"
+    },
+    {
+        "id": "13",
+        "dep": "Córdoba",
+        "cap": "Montería"
+    },
+    {
+        "id": "14",
+        "dep": "Cundinamarca",
+        "cap": "Bogotá"
+    },
+    {
+        "id": "15",
+        "dep": "Guainía",
+        "cap": "Inírida"
+    },
+    {
+        "id": "16",
+        "dep": "Guaviare",
+        "cap": "San José del Guaviare"
+    },
+    {
+        "id": "17",
+        "dep": "Huila",
+        "cap": "Neiva"
+    },
+    {
+        "id": "18",
+        "dep": "La Guajira",
+        "cap": "Riohacha"
+    },
+    {
+        "id": "19",
+        "dep": "Magdalena",
+        "cap": "Santa Marta"
+    },
+    {
+        "id": "20",
+        "dep": "Meta",
+        "cap": "Villavicencio"
+    },
+    {
+        "id": "21",
+        "dep": "Nariño",
+        "cap": "Pasto"
+    },
+    {
+        "id": "22",
+        "dep": "Norte de Santander",
+        "cap": "San José de Cúcuta"
+    },
+    {
+        "id": "23",
+        "dep": "Putumayo",
+        "cap": "Mocoa"
+    },
+    {
+        "id": "24",
+        "dep": "Quindío",
+        "cap": "Armenia"
+    },
+    {
+        "id": "25",
+        "dep": "Risaralda",
+        "cap": "Pereira"
+    },
+    {
+        "id": "26",
+        "dep": "San Andrés y Providencia",
+        "cap": "San Andrés"
+    },
+    {
+        "id": "27",
+        "dep": "Santander",
+        "cap": "Bucaramanga"
+    },
+    {
+        "id": "28",
+        "dep": "Sucre",
+        "cap": "Sincelejo"
+    },
+    {
+        "id": "29",
+        "dep": "Tolima",
+        "cap": "Ibagué"
+    },
+    {
+        "id": "30",
+        "dep": "Valle del Cauca",
+        "cap": "Cali"
+    },
+    {
+        "id": "31",
+        "dep": "Vaupés",
+        "cap": "Mitú"
+    },
+    {
+        "id": "32",
+        "dep": "Vichada",
+        "cap": "Puerto Carreño"
+    }
+]

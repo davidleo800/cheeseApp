@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="ion-padding" >
+  <h1>Bienvenido a QuesoApp</h1>  
+  <form >
+
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="usuario.nombre" name="nombre" type="text" #Nombre required ></ion-input>
+
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input [(ngModel)]="usuario.apellido" name="apellido" type="text" #Apellido required ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Telefono fijo</ion-label>
+      <ion-input [(ngModel)]="usuario.telefono_fijo" name="telefono_fijo" type="text" #Dirección required > </ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Celular</ion-label>
+      <ion-input [(ngModel)]="usuario.celular" name="celular" type="text" #Telefono required ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label>Región</ion-label>
+      <ion-select name="region" [(ngModel)]="usuario.region" #Departamento required>
+        <ion-select-option *ngFor="let region of datosRegion | async">{{region.reg}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label>Departamento</ion-label>
+      <ion-select name="departamento" [(ngModel)]="usuario.departamento" #Departamento required>
+        <ion-select-option *ngFor="let dato of datosTerr | async">{{dato.dep}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Ciudad</ion-label>
+      <ion-input [(ngModel)]="usuario.ciudad" name="Ciudad" type="text" #Telefono required ></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col> 
+      <ion-button type="submit" 
+                  (click)="saveUser(usuario)" 
+                  expand="block">Registrar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

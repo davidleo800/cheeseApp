@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mis productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list-header>
+    Producto:
+  </ion-list-header>
+  <ion-list *ngFor="let producto of productos | async "
+  details-push navPush="miproducto" [routerLink]="['/modaleditproduct', producto]" >
+    <ion-item *ngIf="userID == producto.uid" >
+      <ion-card>
+        <ion-col>
+            <ion-row>
+          {{producto.titulo}}
+        </ion-row>
+        </ion-col>
+      <ion-col>
+        <ion-row>
+          <ion-img *ngIf="producto.img" [src]="producto.img" ></ion-img>
+        </ion-row>
+      </ion-col>
+      <ion-item *ngIf="producto.promocion">
+        <ion-icon color="danger" slot="end" name="ribbon-outline"></ion-icon>
+        <label slot="end" color="light">Promoción</label>
+      </ion-item>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

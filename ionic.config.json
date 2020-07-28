@@ -1,7 +1,8 @@
 {
   "name": "AppQuesos",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

@@ -1,0 +1,91 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="cheese" >
+    <ion-title>CheeseApp</ion-title>
+    <ion-buttons slot="end" *ngIf="typeUser == 'Productor' && authService.isLoggedIn" >
+      <ion-button (click)="abrirModal()">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-header >
+  <ion-toolbar color="cheese">
+    <ion-buttons slot="start" *ngIf="authService.isLoggedIn">
+      <ion-button (click)="openCustom()">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title >Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu *ngIf="authService.isLoggedIn"
+          side="start" menuId="custom" 
+          contentId="main" 
+          class="my-custom-menu" 
+          #menu>
+  <ion-header> 
+    <ion-toolbar color="cheese">
+      <ion-title>Opciones</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list >
+      <ion-menu-toggle>
+        <ion-item [routerLink]="['/perfil', datosUser]">Perfil</ion-item>
+        <ion-item *ngIf="typeUser == 'Distribuidor'">Favoritos</ion-item>
+        <ion-item *ngIf="typeUser == 'Productor'" [routerLink]="['/misproductos']">Mis productos</ion-item>
+        <ion-item *ngIf="typeUser == 'Productor'" [routerLink]="['/notificaciones']">
+          Notificaciones
+          <ion-badge slot="end">0</ion-badge>
+        </ion-item>
+        <ion-item *ngIf="typeUser == 'Distribuidor'" [routerLink]="['/notificaciones']">
+          Productos solicitados
+          <ion-badge color="success">0</ion-badge>
+        </ion-item>
+        
+        <ion-item >Creditos</ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+  <ion-footer class="bar-stable">
+    <ion-item side="end" (click)="authService.SignOut()">Cerrar Sesión</ion-item>
+</ion-footer>
+</ion-menu>
+<ion-router-outlet id="main"></ion-router-outlet>
+
+<ion-content >
+    <ion-list *ngFor="let producto of productos " [routerLink]="['/modalinfoproducto', producto]">
+      <ion-card *ngIf="producto.estado == true">
+          <ion-card-header>
+            <ion-img *ngIf="producto.img" [src]="producto.img" ></ion-img>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-title>{{ producto.titulo }}</ion-card-title>
+            <ion-card-subtitle>{{ producto.descripcion }}</ion-card-subtitle>            
+          </ion-card-content>
+          <ion-item *ngIf="producto.promocion">
+            <ion-icon color="danger" slot="end" name="ribbon-outline"></ion-icon>
+            <label slot="end" color="light">Promoción</label>
+          </ion-item>
+      </ion-card>
+    </ion-list>
+
+</ion-content>
+
+
+ 
+    <ion-list *ngIf="!authService.isLoggedIn">
+ <ion-card >
+  <ion-item [routerLink]="['/registration']" class="ion-activated" color="primary">
+    <ion-icon name="person-add" slot="start"></ion-icon>
+    <ion-label>Registrar</ion-label>
+  </ion-item>
+  </ion-card>
+  <ion-card>
+  <ion-item [routerLink]="['/login']" class="ion-activated">
+    <ion-icon name="person-outline" slot="start"></ion-icon>
+    <ion-label>Iniciar sesión</ion-label>
+  </ion-item>
+  </ion-card>
+    </ion-list>

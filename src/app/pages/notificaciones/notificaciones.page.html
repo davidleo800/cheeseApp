@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Notificaciones productos</ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/main']">
+        <ion-icon slot="icon-only" name="close-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list-header>
+    Personas interesadas en tus productos:
+  </ion-list-header>
+  <ion-list *ngFor="let notificacion of notificaciones | async ">
+    <ion-list *ngIf="userID == notificacion.uidProductor">
+      <ion-list *ngFor="let prod of productos " >
+        <ion-card *ngIf="notificacion.keyproducto == prod.key" >
+          <ion-item>
+              {{ prod.titulo }}              
+          </ion-item>
+  
+   
+          <ion-col>
+            <ion-row>
+              <ion-img *ngIf="prod.img" [src]="prod.img" >
+                <ion-fab right top>
+                  <button ion-fab>
+                    <ion-icon name="pin"></ion-icon>
+                  </button>
+                </ion-fab>
+              </ion-img>
+            </ion-row>
+          </ion-col>
+          <ion-item *ngIf="prod.promocion">
+          <ion-icon color="danger" slot="end" name="ribbon-outline"></ion-icon>
+            <label slot="end" color="light">Promoción</label>
+          </ion-item>
+          <h3>Usuario interesado</h3>
+          <ion-list *ngFor="let dist of infoDist ">
+            <ion-card-content *ngIf="notificacion.uidDist == dist.uid">
+              <h3>{{ dist.nombre }}</h3>
+              <h3>{{ dist.apellido }}</h3>
+              <h3>{{ dist.celular }}</h3>
+              <h3>{{ dist.telefono_fijo }}</h3>
+            </ion-card-content>
+          </ion-list>
+      </ion-card>
+    </ion-list>
+
+
+      
+    </ion-list>
+  </ion-list>
+
+
+</ion-content>
