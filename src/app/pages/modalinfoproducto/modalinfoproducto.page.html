@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="cheese">
     <ion-title>Información de producto</ion-title>
     <ion-buttons slot="start">
       <ion-button [routerLink]="['/main']">
@@ -37,7 +37,15 @@
       <h1>Fijo: {{ fijo }}</h1>
     </ion-item>
   </ion-card-content>
-  
+
+          <div >
+          <ion-item >
+            <ion-col>
+                <ion-icon (click)="deleteFavorito(keyProductFav)" *ngIf="notificacion == 1" name='bookmark'></ion-icon>
+                <ion-icon *ngIf="notificacion == 0" (click)="addFavorito(queso.key)" name='bookmark-outline'></ion-icon>
+            </ion-col>
+          </ion-item>
+          </div>
 
   <ion-item *ngIf="queso.promocion">
     <ion-icon color="danger" slot="end" name="ribbon-outline"></ion-icon>

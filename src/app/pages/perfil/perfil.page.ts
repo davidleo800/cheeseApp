@@ -27,32 +27,6 @@ export class PerfilPage implements OnInit {
               public router: Router,
               private dataService: DataService,
               private activatedRoute: ActivatedRoute) {
-   /* this.authService.ngFireAuth.authState.subscribe(user => {
-    if (user) {
-      this.userID = user.uid;
-
-      this.userService.getUserbyUid().subscribe(
-        (data: any) => {
-          data = Object.keys(data).map(
-            e => data[e]);
-          this.userslist = data;
-          this.user = this.userslist.find((x: { uid: string; }) => x.uid == this.userID);
-          this.usuario = {
-            nombre: this.user.nombre,
-            apellido: this.user.apellido,
-            telefono_fijo: this.user.telefono_fijo,
-            celular: this.user.celular,
-            region: this.user.region,
-            departamento: this.user.departamento,
-            ciudad: this.user.ciudad
-          };
-        },
-        error => {
-          console.log(error as any);
-        }
-      );
-      }
-    });*/
 
     this.activatedRoute.params.subscribe(params => {
 

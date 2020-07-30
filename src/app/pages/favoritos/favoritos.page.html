@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar color="cheese">
+    <ion-title>favoritos</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-button [routerLink]="['/main']">
+        <ion-icon slot="icon-only" name="close-sharp"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>Mis productos</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,8 +14,11 @@
     Producto:
   </ion-list-header>
   <ion-list *ngFor="let producto of productos | async "
-  details-push navPush="miproducto" [routerLink]="['/modaleditproduct', producto]" >
-    <ion-item *ngIf="userID == producto.uid" >
+  details-push navPush="miproducto" [routerLink]="['/modalinfoproducto', producto]" >
+  <div *ngFor="let fav of productoFav">
+
+  
+    <ion-item *ngIf="fav.keyproducto == producto.key" >
       <ion-card>
         <ion-col>
             <ion-row>
@@ -31,7 +36,6 @@
       </ion-item>
       </ion-card>
     </ion-item>
+  </div>
   </ion-list>
-
-
 </ion-content>

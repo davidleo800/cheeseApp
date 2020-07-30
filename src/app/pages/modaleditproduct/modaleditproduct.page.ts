@@ -43,12 +43,12 @@ export class ModaleditproductPage implements OnInit {
       let est2 = JSON.stringify(params.promocion);
       est2 = est2.replace('"', '');
       this.estado2 = est2.replace('"', '');
-      if(this.estado1 === 'true'){
+      if (this.estado1 === 'true'){
         this.est = true;
       }else{
         this.est = false;
       }
-      if(this.estado2 === 'true'){
+      if (this.estado2 === 'true'){
         this.prom = true;
       }else{
         this.prom = false;
@@ -61,7 +61,7 @@ export class ModaleditproductPage implements OnInit {
         img: params.img,
         estado: this.est,
         promocion: this.prom
-      }
+      };
       // Convertir el objeto en arreglo para extraer el booleano 'promocion'
       // console.log(params);
       params = Object.keys(params).map(
@@ -120,7 +120,7 @@ export class ModaleditproductPage implements OnInit {
             this.router.navigate(['misproductos']);
           });
           console.log(urlImage);
-        })
+        });
       }), tap(snap => {
         this.fileSize = snap.totalBytes;
     })

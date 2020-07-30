@@ -33,41 +33,39 @@
     <ion-list >
       <ion-menu-toggle>
         <ion-item [routerLink]="['/perfil', datosUser]">Perfil</ion-item>
-        <ion-item *ngIf="typeUser == 'Distribuidor'">Favoritos</ion-item>
+        <ion-item *ngIf="typeUser == 'Distribuidor'" [routerLink]="['/favoritos', datosUser]" >Favoritos</ion-item>
         <ion-item *ngIf="typeUser == 'Productor'" [routerLink]="['/misproductos']">Mis productos</ion-item>
         <ion-item *ngIf="typeUser == 'Productor'" [routerLink]="['/notificaciones']">
           Notificaciones
-          <ion-badge slot="end">0</ion-badge>
-        </ion-item>
-        <ion-item *ngIf="typeUser == 'Distribuidor'" [routerLink]="['/notificaciones']">
-          Productos solicitados
-          <ion-badge color="success">0</ion-badge>
+          <ion-badge slot="end">{{ numNotif }}</ion-badge>
         </ion-item>
         
-        <ion-item >Creditos</ion-item>
       </ion-menu-toggle>
     </ion-list>
   </ion-content>
   <ion-footer class="bar-stable">
+    <ion-item side="end" (click)="creditos()">Créditos</ion-item>
     <ion-item side="end" (click)="authService.SignOut()">Cerrar Sesión</ion-item>
 </ion-footer>
 </ion-menu>
 <ion-router-outlet id="main"></ion-router-outlet>
 
 <ion-content >
-    <ion-list *ngFor="let producto of productos " [routerLink]="['/modalinfoproducto', producto]">
+    <ion-list *ngFor="let producto of productos " >
       <ion-card *ngIf="producto.estado == true">
-          <ion-card-header>
-            <ion-img *ngIf="producto.img" [src]="producto.img" ></ion-img>
-          </ion-card-header>
-          <ion-card-content>
+
+          <ion-card-content [routerLink]="['/modalinfoproducto', producto]">
+            <ion-card-header>
+              <ion-img *ngIf="producto.img" [src]="producto.img" ></ion-img>
+            </ion-card-header>
             <ion-card-title>{{ producto.titulo }}</ion-card-title>
-            <ion-card-subtitle>{{ producto.descripcion }}</ion-card-subtitle>            
+            <ion-card-subtitle>{{ producto.descripcion }}</ion-card-subtitle>
+            <ion-item *ngIf="producto.promocion">
+              <ion-icon color="danger" slot="end" name="ribbon-outline"></ion-icon>
+              <ion-label slot="end" color="dark">Promoción</ion-label>
+            </ion-item>        
           </ion-card-content>
-          <ion-item *ngIf="producto.promocion">
-            <ion-icon color="danger" slot="end" name="ribbon-outline"></ion-icon>
-            <label slot="end" color="light">Promoción</label>
-          </ion-item>
+
       </ion-card>
     </ion-list>
 

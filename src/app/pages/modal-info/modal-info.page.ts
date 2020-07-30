@@ -202,6 +202,6 @@ export class ModalInfoPage implements OnInit {
     });
   }
   }
-  
+
 
 }

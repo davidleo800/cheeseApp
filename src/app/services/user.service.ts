@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Usuarios } from '../interfaces/user';
-import { Quesos, NotifyProduct } from '../interfaces/queso';
+import { Quesos, NotifyProduct, ProductFav } from '../interfaces/queso';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import * as firebase from 'firebase';
@@ -15,6 +15,7 @@ export class UserService {
   private usuariosService = this.db.list<Usuarios>('usuarios');
   private productService = this.db.list<Quesos>('productos');
   private notifyProduct = this.db.list<NotifyProduct>('notifyProduct');
+  private productFavService = this.db.list<ProductFav>('ProductFav');
 
   constructor(public db: AngularFireDatabase,
               public storage: AngularFireStorage) { }
@@ -27,9 +28,14 @@ export class UserService {
     return this.productService.push(queso);
   }
 
+  addproductFav(productFav: ProductFav) {
+    return this.productFavService.push(productFav);
+  }
+
   addNotify(notifyProduct: NotifyProduct) {
     return this.notifyProduct.push(notifyProduct);
   }
+
 
   getUsersList(){
     return this.usuariosService;
@@ -42,6 +48,10 @@ export class UserService {
 
   getNotifyList(){
     return this.notifyProduct;
+  }
+
+  getproductFav(){
+    return this.productFavService;
   }
 
   getUserbyUid() {
@@ -73,6 +83,10 @@ export class UserService {
 
   removeNotification(key: string){
     return this.notifyProduct.remove(key);
+  }
+
+  removeFavorito(key: string){
+    return this.productFavService.remove(key);
   }
 
 }

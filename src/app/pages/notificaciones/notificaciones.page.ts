@@ -84,7 +84,7 @@ export class NotificacionesPage implements OnInit {
         distribuidor = Object.keys(distribuidor).map(
           e => distribuidor[e]);
         this.infoDist = distribuidor;
-        // this.infoDist = distribuidor.find((x: { uid: string; }) => x.uid === noti.uidDist);
+        // this.infoDist = distribuidor.filter((x: { uid: string; }) => x.uid === noti.uidDist);
         console.log(this.infoDist);
       },
       error => {

@@ -22,3 +22,9 @@ export interface NotifyProduct {
     keyproducto: string;
     producto?: Quesos;
 }
+
+export interface ProductFav {
+    key?: string;
+    uid: string;
+    keyproducto: string;
+}

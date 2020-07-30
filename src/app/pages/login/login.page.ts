@@ -35,8 +35,8 @@ export class LoginPage implements OnInit {
                   data = Object.keys(data).map(
                     e => data[e]);
                   this.idUsuario = data;
-                  this.uidUsuarios = this.idUsuario.find((x: { uid: string; }) => x.uid == this.userID);
-                  if(this.uidUsuarios !== undefined){
+                  this.uidUsuarios = this.idUsuario.find((x: { uid: string; }) => x.uid === this.userID);
+                  if (this.uidUsuarios !== undefined){
                     // si el uid existe en database realtime se envia a formulario main
                     this.router.navigate(['main']);
                   }else{

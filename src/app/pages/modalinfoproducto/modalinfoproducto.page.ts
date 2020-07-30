@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Quesos, NotifyProduct } from '../../interfaces/queso';
+import { Quesos, NotifyProduct, ProductFav } from '../../interfaces/queso';
 import { UserService } from 'src/app/services/user.service';
 import { map } from 'rxjs/operators';
 import { Usuarios } from '../../interfaces/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-modalinfoproducto',
@@ -15,6 +16,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 })
 export class ModalinfoproductoPage implements OnInit {
 
+  productFavList: Observable<ProductFav[]>;
   notifyProduct: NotifyProduct;
   queso: Quesos;
   est: boolean;
@@ -31,14 +33,27 @@ export class ModalinfoproductoPage implements OnInit {
   fijo: any;
   nom: any;
   userID: any;
-  constructor(private activatedRoute: ActivatedRoute,
+  prodfavView: any;
+  productFav: ProductFav = {
+    uid: '',
+    keyproducto: ''
+  };
+  keyProductFav: any;
+  notificacion: any;
+  productFavListprev: any;
+
+  constructor(
+              private activatedRoute: ActivatedRoute,
               public userService: UserService,
               public authService: AuthenticationService,
               private emailComposer: EmailComposer,
-              public router: Router) {
+              public router: Router,
+              public alertController: AlertController) {
     this.authService.ngFireAuth.authState.subscribe(user => {
       if (user) {
+        this.userID = user.uid;
         this.notifyProduct.uidDist = user.uid;
+        this.productFav.uid = user.uid;
       }
     });
     this.activatedRoute.params.subscribe(params => {
@@ -50,12 +65,12 @@ export class ModalinfoproductoPage implements OnInit {
       let est2 = JSON.stringify(params.promocion);
       est2 = est2.replace('"', '');
       this.estado2 = est2.replace('"', '');
-      if(this.estado1 === 'true'){
+      if (this.estado1 === 'true'){
         this.est = true;
       }else{
         this.est = false;
       }
-      if(this.estado2 === 'true'){
+      if (this.estado2 === 'true'){
         this.prom = true;
       }else{
         this.prom = false;
@@ -73,7 +88,7 @@ export class ModalinfoproductoPage implements OnInit {
       this.notifyProduct = {
         uidProductor: params.uid,
         keyproducto: params.key
-      }
+      };
       });
 
   }
@@ -90,7 +105,7 @@ export class ModalinfoproductoPage implements OnInit {
       data = Object.keys(data).map(
         e => data[e]);
       //  obtiene el objeto completo de usuario
-      let dat = data.find((x: { uid: string; }) => x.uid == this.queso.uid);
+      const dat = data.find((x: { uid: string; }) => x.uid === this.queso.uid);
       this.ciudad = dat.ciudad;
       this.dep = dat.departamento;
       this.region = dat.region;
@@ -101,16 +116,62 @@ export class ModalinfoproductoPage implements OnInit {
     error => {
       console.log(error as any);
     });
+
+
+
   }
 
-  Contacto(){
+  ionViewWillEnter(){
+          // listar productos favoritos
+    this.productFavList = this.userService.getproductFav().snapshotChanges().pipe(map(changes => {
+      return changes.map (c => ({
+        key: c.payload.key, ...c.payload.val()
+      }));
+    }));
+    this.productFavList.subscribe((productFav: any) => {
+      productFav = Object.keys(productFav).map(
+        e => productFav[e]);
+      this.productFavList = productFav.filter((x: { uid: string; }) => x.uid === this.userID);
+      this.productFavListprev = this.productFavList;
+      this.prodfavView = this.productFavListprev.filter((x: { keyproducto: string; }) => x.keyproducto === this.queso.key);
+      if (this.prodfavView.length === 1){
+        this.keyProductFav = this.prodfavView;
+        this.keyProductFav = this.keyProductFav[0].key;
+      }
+      this.notificacion = this.prodfavView.length;
+
+    },
+    error => {
+      console.log(error as any);
+    });
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Contacto',
+      message: 'El mensaje fue enviado al productor',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   addProduct(notifyProduct: NotifyProduct){
+    this.presentAlert();
     this.userService.addNotify(notifyProduct).then(ref => {
       this.router.navigate(['main']);
     });
 
+  }
+
+  addFavorito(keyProd: string){
+    this.productFav.keyproducto = keyProd;
+    this.userService.addproductFav(this.productFav);
+  }
+
+  deleteFavorito(key){
+    this.userService.removeFavorito(key);
   }
 
 }

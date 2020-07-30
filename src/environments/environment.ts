@@ -13,7 +13,11 @@ export const environment = {
     messagingSenderId: '14486066621',
     appId: '1:14486066621:web:57eb94ee84071dc3c92ed4',
     measurementId: 'G-ZPSFJJKCMS'
-  }
+  },
+  version: '1.19.0',
+  developer: 'David Contreras',
+  comp: 'Universidad Libre'
+
 };
 
 /*
