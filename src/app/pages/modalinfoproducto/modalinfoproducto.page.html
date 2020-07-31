@@ -38,7 +38,7 @@
     </ion-item>
   </ion-card-content>
 
-          <div >
+          <div *ngIf="authService.isLoggedIn">
           <ion-item >
             <ion-col>
                 <ion-icon (click)="deleteFavorito(keyProductFav)" *ngIf="notificacion == 1" name='bookmark'></ion-icon>
@@ -55,7 +55,7 @@
   </ion-list>
 
   <ion-row>
-    <ion-col> 
+    <ion-col *ngIf="authService.isLoggedIn"> 
     <ion-button type="submit" 
                 (click)="addProduct(notifyProduct)"
                 expand="block" >Ponerse en contacto</ion-button>

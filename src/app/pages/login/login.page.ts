@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
-        if (this.authService.isEmailVerified) {
+        // if (this.authService.isEmailVerified) {
           // Funcion que extrae el uid
           this.authService.ngFireAuth.authState.subscribe(user => {
             if (user) {
@@ -51,10 +51,10 @@ export class LoginPage implements OnInit {
             }
           });
 
-        } else {
-          console.log('Email is not verified');
-          return false;
-        }
+        // } else {
+          // console.log('Email is not verified');
+          // return false;
+        // }
       }).catch((error) => {
         console.log(error.message);
       });
